@@ -65,3 +65,4 @@ studentsList.forEach((student) => {
 if (body) {
   body.appendChild(table);
 }
+ 
