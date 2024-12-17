@@ -66,8 +66,23 @@ function executeWork(employee: DirectorInterface | TeacherInterface): void {
 }
 
 // Example Usage:
-const employee1 = createEmployee(600); // Director
-executeWork(employee1);  // "Getting to director tasks"
+const employee1 = createEmployee(600); 
+executeWork(employee1);  
 
-const employee2 = createEmployee(400); // Teacher
-executeWork(employee2);  // "Getting to work"
+const employee2 = createEmployee(400); 
+executeWork(employee2); 
+//String Literal type
+type Subjects = "Math" | "History"
+
+
+//define teachclass
+function teachClass(todayClass: Subjects): string {
+ if(todayClass === "Math"){
+  return"Teaching Math";
+ } else if(todayClass === "History"){
+  return"Teaching History"
+ }
+
+};
+console.log(teachClass("Math"));
+console.log(teachClass("History"));
