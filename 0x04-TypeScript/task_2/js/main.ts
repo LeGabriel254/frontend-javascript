@@ -2,7 +2,7 @@
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
-  workDirectorTasks(): string;  // Correct method name
+  workDirectorTasks(): string;
 }
 
 // TeacherInterface with 3 expected methods
@@ -22,7 +22,7 @@ class Director implements DirectorInterface {
     return "Getting a coffee break";
   }
 
-  workDirectorTasks(): string {  // Correct method name
+  workDirectorTasks(): string {
     return "Getting to director tasks";
   }
 }
@@ -51,13 +51,23 @@ function createEmployee(salary: number | string): Director | Teacher {
   }
 }
 
-// Example Usage:
-const employee1 = createEmployee(600);
-console.log(employee1.workFromHome());  // "Working from home"
-console.log(employee1.getCoffeeBreak()); // "Getting a coffee break"
-console.log(employee1.workDirectorTasks()); // "Getting to director tasks"
+// Type predicate function to check if the employee is a Director
+function isDirector(employee: DirectorInterface | TeacherInterface): employee is DirectorInterface {
+  return (employee as DirectorInterface).workDirectorTasks !== undefined;
+}
 
-const employee2 = createEmployee(400);
-console.log(employee2.workFromHome());  // "Cannot work from home"
-console.log(employee2.getCoffeeBreak()); // "Cannot have a break"
-console.log(employee2.workTeacherTasks()); // "Getting to work"
+// Function to execute work based on employee type
+function executeWork(employee: DirectorInterface | TeacherInterface): void {
+  if (isDirector(employee)) {
+    console.log(employee.workDirectorTasks());
+  } else {
+    console.log(employee.workTeacherTasks());
+  }
+}
+
+// Example Usage:
+const employee1 = createEmployee(600); // Director
+executeWork(employee1);  // "Getting to director tasks"
+
+const employee2 = createEmployee(400); // Teacher
+executeWork(employee2);  // "Getting to work"
