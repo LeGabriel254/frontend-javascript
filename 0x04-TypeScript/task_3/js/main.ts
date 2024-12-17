@@ -1,6 +1,6 @@
 /// <reference path="../js/crud.d.ts" />
 
-import { RowID, RowElement } from "../js/interface";
+// import { RowID, RowElement } from "../js/interface";
 import * as CRUD from "../js/crud";
 
 // Example usage:
